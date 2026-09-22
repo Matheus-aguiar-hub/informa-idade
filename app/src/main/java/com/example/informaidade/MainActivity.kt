@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,18 +12,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -57,10 +52,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
-    var textoIdade by remember { mutableStateOf("17") }
-
-    //Usar essa variavel para validar a idade caso nao tiver nada ou letra retorna 0
-    val idade = textoIdade.toIntOrNull() ?: 0
+    // Variável de idade como número inteiro (Int)
+    var idade by remember { mutableStateOf(178) }
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -78,7 +71,7 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
                 fontWeight = FontWeight.SemiBold,
                 color = Color(64, 110, 189, 255)
             )
-        }//ROW
+        }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -86,27 +79,26 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Digite ou aperte os botões",
+                text = "Aperte os botões para informar sua idade",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color(21, 21, 21, 255)
             )
-        }//ROW
+        }
 
+        // Exibindo a idade direto em um Text (sem TextField)
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextField(
-                value = textoIdade,
-                onValueChange = { novoTexto ->
-                    textoIdade = novoTexto
-                },
-                modifier = Modifier.padding(top = 16.dp),
-                label = { Text("Idade") }
+            Text(
+                text = idade.toString(),
+                modifier = Modifier.padding(20.dp),
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold
             )
-        }//ROW
+        }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -115,9 +107,9 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
         ) {
             Button(
                 onClick = {
-                    val atual = textoIdade.toIntOrNull() ?: 0
-                    if (atual > 0) {
-                        textoIdade = (atual - 1).toString()
+                    // Validação para não baixar de 0
+                    if (idade > 0) {
+                        idade = idade - 1
                     }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(64, 110, 189, 255)),
@@ -132,13 +124,13 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier.size(32.dp),
                     contentDescription = "Diminuir idade"
                 )
-            }//CONFIGURACAO DO BOTAO
+            }
 
             Button(
                 onClick = {
-                    val atual = textoIdade.toIntOrNull() ?: 0
-                    if (atual < 180) {
-                        textoIdade = (atual + 1).toString()
+                    // Validação para não passar de 180
+                    if (idade < 180) {
+                        idade = idade + 1
                     }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(64, 110, 189, 255)),
@@ -153,8 +145,8 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier.size(32.dp),
                     contentDescription = "Aumentar idade"
                 )
-            }//CONFIGURACAO DO BOTAO
-        }//BOTAO
+            }
+        }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -163,18 +155,19 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = if (idade < 0) {
-                      "Número não é permitido"}
-                        else if(idade > 180) {
-                            "Número não permitido"}
-                        else if(idade <= 17){
-                            "Você é MENOR de idade"}
-                else {  "Você é MAIOR de idade"},
+                    "Número não é permitido"
+                } else if (idade > 180) {
+                    "Número não permitido"
+                } else if (idade <= 17) {
+                    "Você é MENOR de idade"
+                } else {
+                    "Você é MAIOR de idade"
+                },
                 color = Color(64, 110, 189, 255),
                 modifier = Modifier.padding(top = 16.dp),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
-        }//ROW
-    }//COLUMN
-}//FUNCAO
-
+        }
+    }
+}
