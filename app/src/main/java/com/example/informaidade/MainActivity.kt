@@ -8,6 +8,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -75,7 +76,7 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
                 text = "Qual é a sua idade?",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.SemiBold,
-                color = Color(66, 133, 244)
+                color = Color(64, 110, 189, 255)
             )
         }
 
@@ -98,7 +99,8 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
         ){
             Text(
                 text = idade.toString(),
-                modifier = Modifier.padding(top = 16.dp),
+                modifier = Modifier
+                    .padding(20.dp),
                 fontSize = 32.sp)
         }
         Row(
@@ -110,9 +112,12 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
                 onClick = {
                     idade = idade - 1
                 },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(64, 110, 189, 255)),
                 modifier = Modifier
-                    .padding(horizontal = 32.dp)
+                    .padding(horizontal = 16.dp)
+                    .size(56.dp),
+                contentPadding = PaddingValues(0.dp),
+                shape = RoundedCornerShape(8.dp)
 
             ){
                 Row( verticalAlignment = Alignment.CenterVertically
@@ -126,9 +131,12 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
                 onClick = {
                     idade = idade + 1
                 },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(64, 110, 189, 255)),
                 modifier = Modifier
-                    .padding(horizontal = 32.dp)
+                    .padding(horizontal = 16.dp)
+                    .size(56.dp),
+                contentPadding = PaddingValues(0.dp),
+                shape = RoundedCornerShape(8.dp)
 
             ){
                 Row( verticalAlignment = Alignment.CenterVertically
@@ -150,6 +158,7 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
                 } else{
                     "Maior de idade"
                 },
+                color = Color(64, 110, 189, 255),
                 modifier = Modifier.padding(top = 16.dp),
                 fontSize = 32.sp)
         }
