@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
     // Variável de idade como número inteiro (Int)
-    var idade by remember { mutableStateOf(178) }
+    var idade by remember { mutableStateOf(17) }
 
     Column(
         modifier = modifier.fillMaxSize(),
