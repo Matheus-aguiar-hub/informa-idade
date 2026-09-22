@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -109,13 +110,15 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
                 onClick = {
                     idade = idade - 1
                 },
-                Modifier
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
+                modifier = Modifier
                     .padding(horizontal = 32.dp)
-                    .size(56.dp)
+
             ){
                 Row( verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(imageVector = Icons.Default.KeyboardArrowDown,
+                        modifier = Modifier.size(32.dp),
                         contentDescription = "Diminuir idade")
                 }//Botao de menos
             }
@@ -123,16 +126,16 @@ fun BasicsComponentsScreen(modifier: Modifier = Modifier) {
                 onClick = {
                     idade = idade + 1
                 },
-                shape = RoundedCornerShape(0.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
                 modifier = Modifier
                     .padding(horizontal = 32.dp)
-                    .size(56.dp)
+
             ){
                 Row( verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(imageVector = Icons.Default.KeyboardArrowUp,
-                        contentDescription = "Aumentar idade")
+                        modifier = Modifier.size(32.dp),
+                        contentDescription = "Diminuir idade")
                 }//Botao de mais
             }
         }
